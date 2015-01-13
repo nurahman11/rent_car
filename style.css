@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+.largeIcon{
+	font-size:30px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+a:hover,a:visited,a:after,a:before{
+	text-decoration:none;
+}
+
+thead tr th{
+	text-align:center;
+}
+
+.xxx:hover{
+	-moz-box-shadow: 0 0 10px #ccc; -webkit-box-shadow: 0 0 10px #ccc; box-shadow: 0 0 10px #ccc;
+}
+
+.thumbnail{
+    overflow: auto;
+}
+
+.no_resize{
+	resize:none;
+}
