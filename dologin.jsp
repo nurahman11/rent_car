@@ -10,6 +10,7 @@
 		if(rs.next()){
 			session.setAttribute("username",rs.getString("username"));
 			session.setAttribute("name",rs.getString("nama"));
+			session.setAttribute("company",rs.getString("company"));
 			response.sendRedirect("index.jsp");
 			out.print(username+rs.getRow()+password);
 		}

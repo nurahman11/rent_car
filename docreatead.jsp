@@ -39,8 +39,9 @@
 	if(harga_per_bulan.equals(""))harga_per_bulan="0";
 	try{
 		String query = "INSERT INTO TrIklan VALUES('"+title+"','"+sqlNow+"','"+username+"','"+kode_kendaraan+"','"+kode_provinsi+"',"+harga_per_jam+","+harga_per_hari+","+harga_per_minggu+","+harga_per_bulan+","+driver+",'"+company+"','"+telepon+"','"+alamat+"','"+map.get("img1")+"','"+sqlNow+"',0)";
-		out.print(query);
+		String query2 = "INSERT INTO TrNotification(notif_type,username,notification,notif_time,status) VALUES(2,'"+username+"','<b>"+username+"</b> has just posted an advertisement','"+sqlNow+"',0)";
 		stmt.executeUpdate(query);
+		st.executeUpdate(query2);
 		response.sendRedirect("add_rent.jsp?msg=success");
 	}catch(Exception e){
 		out.print(e.getMessage());

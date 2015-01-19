@@ -26,6 +26,11 @@
                 <li><a href="city.jsp">City</a></li>
                 <li><a href="inbox.jsp">Inbox</a></li>
                 <%
+					ResultSet rs_notif = statement.executeQuery("SELECT COUNT(notif_id) AS notif FROM TrNotification WHERE status = 0");
+					rs_notif.next();
+				%>
+                <li><a href="notification.jsp">Notifications <span class="badge"><%=rs_notif.getString("notif")%></span></a></li>
+                <%
 					}
 					else{
 				%>

@@ -50,6 +50,12 @@
                         </div>
                     </div>
                 	<div class="form-group">
+                    	<label for="company" class="col-sm-2 control-label">Company</label>
+                        <div class="col-sm-6">
+	                        <input type="text" id="company" name="company" class="form-control" placeholder="Enter company..." />
+                        </div>
+                    </div>
+                	<div class="form-group">
                     	<label for="gender" class="col-sm-2 control-label">Gender</label>
                         <div class="col-sm-6">
 	                        <label class="radio-inline">
@@ -215,6 +221,13 @@
 						validators: {
 							notEmpty: {
 								message: 'Bank is required'
+							}
+						}
+					},
+					company: {
+						validators: {
+							notEmpty: {
+								message: 'Company is required'
 							}
 						}
 					},

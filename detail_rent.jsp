@@ -21,7 +21,7 @@
 			<% 
                 ResultSet rs_adv;
                 String kode = request.getParameter("rent");
-                String query = "SELECT a.kode_iklan, a.judul, b.username, c.nama_kendaraan, e.nama_provinsi, a.harga_sewa_per_jam, a.harga_sewa_per_hari, a.harga_sewa_per_minggu, a.harga_sewa_per_bulan, a.gambar, a.tanggal_post, CONVERT(VARCHAR(12),a.tanggal_post,106) AS tanggal_post_out, d.nama_jenis_kendaraan, a.include_driver, a.telepon, a.alamat ";
+                String query = "SELECT a.kode_iklan, a.judul, b.username, c.nama_kendaraan, e.nama_provinsi, a.harga_sewa_per_jam, a.harga_sewa_per_hari, a.harga_sewa_per_minggu, a.harga_sewa_per_bulan, a.gambar, a.tanggal_post, CONVERT(VARCHAR(12),a.tanggal_post,106) AS tanggal_post_out, d.nama_jenis_kendaraan, a.include_driver, a.telepon, a.alamat, b.company ";
                 query += "FROM TrIklan a ";
                 query += "JOIN MsCustomer b ON a.username=b.username ";
                 query += "JOIN MsKendaraan c ON a.kode_kendaraan=c.kode_kendaraan ";
@@ -149,6 +149,14 @@
 											}
 										%>
                                     </h4>
+                                </div>
+                            </div>
+                        	<div class="row">
+                            	<div class="col-md-3">
+                                	<h4>Company</h4>
+                                </div>
+                            	<div class="col-md-9">
+                                	<h4>: <%=rs_adv.getString("company")%></h4>
                                 </div>
                             </div>
                         	<div class="row">

@@ -1,111 +1,24 @@
-IF OBJECT_ID ('dbo.Feedback') IS NOT NULL
-	DROP TABLE dbo.Feedback
+CREATE DATABASE test 
+GO 
+
+USE test
+GO 
+
+IF OBJECT_ID ('dbo.TrNotification') IS NOT NULL
+	DROP TABLE dbo.TrNotification
 GO
 
-CREATE TABLE dbo.Feedback
+CREATE TABLE dbo.TrNotification
 	(
-	name    VARCHAR (50) NOT NULL,
-	email   VARCHAR (50),
-	message TEXT
+	notif_id     INT IDENTITY NOT NULL,
+	notif_type   INT NOT NULL,
+	username     VARCHAR (50),
+	notification VARCHAR (255),
+	notif_time   DATETIME,
+	status       INT,
+	PRIMARY KEY (notif_id)
 	)
 GO
-
-
-IF OBJECT_ID ('dbo.MsBank') IS NOT NULL
-	DROP TABLE dbo.MsBank
-GO
-
-CREATE TABLE dbo.MsBank
-	(
-	kode_bank VARCHAR (50) NOT NULL,
-	nama_bank VARCHAR (50),
-	PRIMARY KEY (kode_bank)
-	)
-GO
-
-
-IF OBJECT_ID ('dbo.MsCustomer') IS NOT NULL
-	DROP TABLE dbo.MsCustomer
-GO
-
-CREATE TABLE dbo.MsCustomer
-	(
-	username       VARCHAR (50) NOT NULL,
-	password       VARCHAR (50) NOT NULL,
-	nama           VARCHAR (100) NOT NULL,
-	email          VARCHAR (50) NOT NULL,
-	kode_paket     VARCHAR (50),
-	gender         CHAR (1) NOT NULL,
-	umur           INT,
-	role           VARCHAR (10),
-	tanggal_join   DATETIME,
-	status         INT,
-	bank           VARCHAR (50),
-	account_number VARCHAR (50),
-	PRIMARY KEY (username)
-	)
-GO
-
-
-IF OBJECT_ID ('dbo.MsJenisKendaraan') IS NOT NULL
-	DROP TABLE dbo.MsJenisKendaraan
-GO
-
-CREATE TABLE dbo.MsJenisKendaraan
-	(
-	kode_jenis_kendaraan VARCHAR (50) NOT NULL,
-	nama_jenis_kendaraan VARCHAR (50) NOT NULL,
-	PRIMARY KEY (kode_jenis_kendaraan)
-	)
-GO
-
-
-IF OBJECT_ID ('dbo.MsKendaraan') IS NOT NULL
-	DROP TABLE dbo.MsKendaraan
-GO
-
-CREATE TABLE dbo.MsKendaraan
-	(
-	kode_kendaraan       VARCHAR (50) NOT NULL,
-	nama_kendaraan       VARCHAR (50) NOT NULL,
-	kode_jenis_kendaraan VARCHAR (50) NOT NULL,
-	kapasitas            INT,
-	transmisi            CHAR (2),
-	status               INT,
-	PRIMARY KEY (kode_kendaraan)
-	)
-GO
-
-
-IF OBJECT_ID ('dbo.MsPaket') IS NOT NULL
-	DROP TABLE dbo.MsPaket
-GO
-
-CREATE TABLE dbo.MsPaket
-	(
-	kode_paket  VARCHAR (50) NOT NULL,
-	nama_paket  VARCHAR (50) NOT NULL,
-	harga       INT NOT NULL,
-	max_posting INT NOT NULL,
-	deskripsi   VARCHAR (500),
-	order_no    INT,
-	PRIMARY KEY (kode_paket)
-	)
-GO
-
-
-IF OBJECT_ID ('dbo.MsProvinsi') IS NOT NULL
-	DROP TABLE dbo.MsProvinsi
-GO
-
-CREATE TABLE dbo.MsProvinsi
-	(
-	kode_provinsi VARCHAR (50) NOT NULL,
-	nama_provinsi VARCHAR (100) NOT NULL,
-	PRIMARY KEY (kode_provinsi)
-	)
-GO
-
 
 IF OBJECT_ID ('dbo.TrIklan') IS NOT NULL
 	DROP TABLE dbo.TrIklan
@@ -133,6 +46,140 @@ CREATE TABLE dbo.TrIklan
 	)
 GO
 
+IF OBJECT_ID ('dbo.MsProvinsi') IS NOT NULL
+	DROP TABLE dbo.MsProvinsi
+GO
+
+CREATE TABLE dbo.MsProvinsi
+	(
+	kode_provinsi VARCHAR (50) NOT NULL,
+	nama_provinsi VARCHAR (100) NOT NULL,
+	PRIMARY KEY (kode_provinsi)
+	)
+GO
+
+IF OBJECT_ID ('dbo.MsPaket') IS NOT NULL
+	DROP TABLE dbo.MsPaket
+GO
+
+CREATE TABLE dbo.MsPaket
+	(
+	kode_paket  VARCHAR (50) NOT NULL,
+	nama_paket  VARCHAR (50) NOT NULL,
+	harga       INT NOT NULL,
+	max_posting INT NOT NULL,
+	deskripsi   VARCHAR (500),
+	order_no    INT,
+	PRIMARY KEY (kode_paket)
+	)
+GO
+
+IF OBJECT_ID ('dbo.MsNotificationType') IS NOT NULL
+	DROP TABLE dbo.MsNotificationType
+GO
+
+CREATE TABLE dbo.MsNotificationType
+	(
+	notif_type_id INT NOT NULL,
+	notif_type    VARCHAR (50),
+	PRIMARY KEY (notif_type_id)
+	)
+GO
+
+IF OBJECT_ID ('dbo.MsKendaraan') IS NOT NULL
+	DROP TABLE dbo.MsKendaraan
+GO
+
+CREATE TABLE dbo.MsKendaraan
+	(
+	kode_kendaraan       VARCHAR (50) NOT NULL,
+	nama_kendaraan       VARCHAR (50) NOT NULL,
+	kode_jenis_kendaraan VARCHAR (50) NOT NULL,
+	kapasitas            INT,
+	transmisi            CHAR (2),
+	status               INT,
+	PRIMARY KEY (kode_kendaraan)
+	)
+GO
+
+IF OBJECT_ID ('dbo.MsJenisKendaraan') IS NOT NULL
+	DROP TABLE dbo.MsJenisKendaraan
+GO
+
+CREATE TABLE dbo.MsJenisKendaraan
+	(
+	kode_jenis_kendaraan VARCHAR (50) NOT NULL,
+	nama_jenis_kendaraan VARCHAR (50) NOT NULL,
+	PRIMARY KEY (kode_jenis_kendaraan)
+	)
+GO
+
+IF OBJECT_ID ('dbo.MsCustomer') IS NOT NULL
+	DROP TABLE dbo.MsCustomer
+GO
+
+CREATE TABLE dbo.MsCustomer
+	(
+	username       VARCHAR (50) NOT NULL,
+	password       VARCHAR (50) NOT NULL,
+	nama           VARCHAR (100) NOT NULL,
+	email          VARCHAR (50) NOT NULL,
+	kode_paket     VARCHAR (50),
+	gender         CHAR (1) NOT NULL,
+	umur           INT,
+	role           VARCHAR (10),
+	tanggal_join   DATETIME,
+	status         INT,
+	company        VARCHAR (50),
+	bank           VARCHAR (50),
+	account_number VARCHAR (50),
+	PRIMARY KEY (username)
+	)
+GO
+
+IF OBJECT_ID ('dbo.MsBank') IS NOT NULL
+	DROP TABLE dbo.MsBank
+GO
+
+CREATE TABLE dbo.MsBank
+	(
+	kode_bank VARCHAR (50) NOT NULL,
+	nama_bank VARCHAR (50),
+	PRIMARY KEY (kode_bank)
+	)
+GO
+
+IF OBJECT_ID ('dbo.Feedback') IS NOT NULL
+	DROP TABLE dbo.Feedback
+GO
+
+CREATE TABLE dbo.Feedback
+	(
+	name    VARCHAR (50) NOT NULL,
+	email   VARCHAR (50),
+	message TEXT
+	)
+GO
+
+INSERT INTO dbo.MsCustomer (username, password, nama, email, kode_paket, gender, umur, role, tanggal_join, status, company, bank, account_number)
+VALUES ('admin', 'admin', 'admin', 'admin', 'PRM', 'M', 22, 'admin', '2015-01-18 18:49:40.6', 1, 'admin', 'admin', 'admin')
+GO
+
+INSERT INTO dbo.MsBank (kode_bank, nama_bank)
+VALUES ('BCA', 'BCA')
+GO
+
+INSERT INTO dbo.MsBank (kode_bank, nama_bank)
+VALUES ('BNI', 'BNI')
+GO
+
+INSERT INTO dbo.MsBank (kode_bank, nama_bank)
+VALUES ('BRI', 'BRI')
+GO
+
+INSERT INTO dbo.MsBank (kode_bank, nama_bank)
+VALUES ('Mandiri', 'Mandiri')
+GO
 
 INSERT INTO dbo.MsJenisKendaraan (kode_jenis_kendaraan, nama_jenis_kendaraan)
 VALUES ('MNV', 'Mini Van')
@@ -148,10 +195,6 @@ GO
 
 INSERT INTO dbo.MsJenisKendaraan (kode_jenis_kendaraan, nama_jenis_kendaraan)
 VALUES ('SUV', 'SUV')
-GO
-
-INSERT INTO dbo.MsCustomer (username, password, nama, email, kode_paket, gender, umur, role, tanggal_join, status, bank, account_number)
-VALUES ('admin', 'admin', 'Admin', 'admin@random.com', 'SUPERADMIN', 'M', 22, 'admin', '2014-12-29 14:36:40.337', 1, 'BCA', '5271012569')
 GO
 
 INSERT INTO dbo.MsKendaraan (kode_kendaraan, nama_kendaraan, kode_jenis_kendaraan, kapasitas, transmisi, status)
@@ -170,6 +213,18 @@ INSERT INTO dbo.MsKendaraan (kode_kendaraan, nama_kendaraan, kode_jenis_kendaraa
 VALUES ('Xenia', 'Daihatsu Xenia', 'MPV', 10, 'AT', 1)
 GO
 
+INSERT INTO dbo.MsNotificationType (notif_type_id, notif_type)
+VALUES (1, 'Register')
+GO
+
+INSERT INTO dbo.MsNotificationType (notif_type_id, notif_type)
+VALUES (2, 'Post Advertisement')
+GO
+
+INSERT INTO dbo.MsNotificationType (notif_type_id, notif_type)
+VALUES (3, 'Change Package')
+GO
+
 INSERT INTO dbo.MsPaket (kode_paket, nama_paket, harga, max_posting, deskripsi, order_no)
 VALUES ('PRM', 'Premium', 500000, 5, 'Deskripsi', 2)
 GO
@@ -179,7 +234,7 @@ VALUES ('PRO', 'Pro', 1000000, 10, 'Deskripsi', 3)
 GO
 
 INSERT INTO dbo.MsPaket (kode_paket, nama_paket, harga, max_posting, deskripsi, order_no)
-VALUES ('REG', 'Reguler', 300000, 2, 'Deskripsi', 1)
+VALUES ('REG', 'Reguler', 300000, 1, 'Deskripsi', 1)
 GO
 
 INSERT INTO dbo.MsProvinsi (kode_provinsi, nama_provinsi)
@@ -320,21 +375,5 @@ GO
 
 INSERT INTO dbo.MsProvinsi (kode_provinsi, nama_provinsi)
 VALUES ('9', 'Jawa Tengah')
-GO
-
-INSERT INTO dbo.MsBank (kode_bank, nama_bank)
-VALUES ('BCA', 'BCA')
-GO
-
-INSERT INTO dbo.MsBank (kode_bank, nama_bank)
-VALUES ('BNI', 'BNI')
-GO
-
-INSERT INTO dbo.MsBank (kode_bank, nama_bank)
-VALUES ('BRI', 'BRI')
-GO
-
-INSERT INTO dbo.MsBank (kode_bank, nama_bank)
-VALUES ('Mandiri', 'Mandiri')
 GO
 

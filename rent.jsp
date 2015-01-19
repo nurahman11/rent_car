@@ -101,7 +101,7 @@
 						if(num_row == 0){
 					%>
                     	<div class="col-md-12" style="text-align:center;">
-                    		<h3 style="border:1px #CCCCCC solid; padding:20px 0px; border-radius:5px">No Result</h3>
+                    		<h3 style="border:1px #CCCCCC solid; padding:20px 0px; border-radius:5px">No Advertisement Found</h3>
                         </div>
                     <%
 						}

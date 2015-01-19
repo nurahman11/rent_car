@@ -9,6 +9,7 @@
 	Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=db_rent","nurahman","dataon");
 	Statement stmt = conn.createStatement();
 	Statement st = conn.createStatement();
+	Statement statement = conn.createStatement();
 %>
 </body>
 </html>
